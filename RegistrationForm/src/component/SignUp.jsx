@@ -7,15 +7,16 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+console.log(email,password,'email pasword');
 
   const handleSubmit = async (e) => {
+    console.log(e,'eee----------------------');
+    
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("Account Created");
-      setTimeout(() => {
         navigate('/Login'); 
-      }, 1000); 
     } catch (err) {
       console.log(err.message);
     }
@@ -46,7 +47,6 @@ const SignUp = () => {
         </div>
         <div className='flex justify-center'>
           <button 
-          onClick={() => navigate('/Login')}
            className=" bg-white text-black p-2 my-6 w-1/2 rounded-lg  hover:bg-slate-700 font-bold" type="submit ">
             Sign Up
           </button>
