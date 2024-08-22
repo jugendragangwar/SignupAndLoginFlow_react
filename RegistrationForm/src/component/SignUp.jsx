@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword} from 'firebase/auth';
 import { auth } from './firebase';
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const navigate = useNavigate();
   const [loginMessage, setLoginMessage] = useState('');
 
@@ -14,7 +14,7 @@ const SignUp = () => {
 
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, name, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       setLoginMessage('signUp Successful');
       console.log("Account Created");
       navigate('/Login');
@@ -29,14 +29,14 @@ const SignUp = () => {
       <form onSubmit={handleSubmit} className="bg-slate-800 border-2 border-none p-4 rounded-lg">
         <h2 className="text-center text-white text-4xl mb-4">Sign Up</h2>
         <div className="grid grid-cols-1 gap-2">
-        <label htmlFor="name" className=" text-white">
+        {/* <label htmlFor="name" className=" text-white">
             User Name:
             <input
               className="bg-slate-100 p-2 w-full text-black h-2/4"
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
-          </label>
+          </label> */}
           <label htmlFor="email" className=" text-white">
             Email:
             <input
