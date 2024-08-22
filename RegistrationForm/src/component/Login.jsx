@@ -44,10 +44,7 @@ const Login = () => {
         <div className='flex justify-around'>
           <button
             type="submit"
-            className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold"
-          >
-            Login
-          </button>
+            className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold">Login</button>
           <button
             type="button"
             className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold"
