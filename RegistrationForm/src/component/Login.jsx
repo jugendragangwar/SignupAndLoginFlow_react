@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebase';  
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginMessage, setLoginMessage] = useState(''); 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
-    if (email && password) {
- 
-      navigate('/user');  
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setLoginMessage('Login Successful'); 
+      setTimeout(() => {
+        navigate('/user'); 
+      }, 1000); 
+    } catch (err) {
+      setLoginMessage('Invalid Email or Password'); 
     }
   };
 
@@ -41,10 +48,13 @@ const Login = () => {
             />
           </label>
         </div>
-        <div className='flex justify-around'>
+        <div className="flex justify-around">
           <button
             type="submit"
-            className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold">Login</button>
+            className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold"
+          >
+            Login
+          </button>
           <button
             type="button"
             className="bg-white text-black p-2 my-6 w-1/3 rounded-lg hover:bg-slate-700 font-bold"
@@ -53,6 +63,9 @@ const Login = () => {
             Back
           </button>
         </div>
+        {loginMessage && (
+          <p className="text-center text-white mt-4">{loginMessage}</p>
+        )}
       </form>
     </div>
   );

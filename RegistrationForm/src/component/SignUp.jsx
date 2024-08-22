@@ -4,21 +4,21 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 
 const SignUp = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            console.log("Account Created");
-        } catch (err) {
-            console.log(err.message);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log("Account Created");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
-   
-    return (
+
+  return (
     <div className="  flex items-center justify-center h-screen">
       <form onSubmit={handleSubmit} className="bg-slate-800 border-2 border-none p-4 rounded-lg">
         <h2 className="text-center text-white text-4xl mb-4">Sign Up</h2>
@@ -40,16 +40,16 @@ const SignUp = () => {
             />
           </label>
         </div>
-       <div className='flex justify-center'>
-       <button className=" bg-white text-black p-2 my-6 w-1/2 rounded-lg  hover:bg-slate-700 font-bold" type="submit ">
-          Sign Up
-        </button>
-       </div>
+        <div className='flex justify-center'>
+          <button className=" bg-white text-black p-2 my-6 w-1/2 rounded-lg  hover:bg-slate-700 font-bold" type="submit ">
+            Sign Up
+          </button>
+        </div>
         <div className='flex justify-center '>
-        <p className="text-center text-white">
-          Already Registered?  
-        </p>
-        <Link className='text-yellow-500' to="/login">Login</Link>
+          <p className="text-center text-white">
+            Already Registered?
+          </p>
+          <Link className='text-yellow-500' to="/login">Login</Link>
         </div>
       </form>
     </div>
