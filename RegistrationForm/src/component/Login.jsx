@@ -14,9 +14,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setLoginMessage('Login Successful'); 
-      setTimeout(() => {
         navigate('/user'); 
-      }, 1000); 
     } catch (err) {
       setLoginMessage('Invalid Email or Password'); 
     }
