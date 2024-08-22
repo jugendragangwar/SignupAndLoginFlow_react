@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("Account Created");
+      setTimeout(() => {
+        navigate('/Login'); 
+      }, 1000); 
     } catch (err) {
       console.log(err.message);
     }
@@ -41,7 +45,9 @@ const SignUp = () => {
           </label>
         </div>
         <div className='flex justify-center'>
-          <button className=" bg-white text-black p-2 my-6 w-1/2 rounded-lg  hover:bg-slate-700 font-bold" type="submit ">
+          <button 
+          onClick={() => navigate('/Login')}
+           className=" bg-white text-black p-2 my-6 w-1/2 rounded-lg  hover:bg-slate-700 font-bold" type="submit ">
             Sign Up
           </button>
         </div>
